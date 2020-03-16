@@ -1,0 +1,61 @@
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 20000
+
+ribbon:
+  ReadTimeout: 20000
+  ConnectTimeout: 20000
+
+zuul:
+  ignoredServices: '*'
+  host:
+    connect-timeout-millis: 20000
+    socket-timeout-millis: 20000
+
+  routes:
+    account:
+      path: /restful/accounts/**
+      serviceId: account
+      stripPrefix: false
+      sensitiveHeaders: "*"
+
+    payment:
+      path: /restful/pay/**
+      serviceId: payment
+      stripPrefix: false
+      sensitiveHeaders: "*"
+
+    settlement:
+      path: /restful/settlements/**
+      serviceId: payment
+      stripPrefix: false
+      sensitiveHeaders: "*"
+
+    advertisements:
+      path: /restful/advertisements/**
+      serviceId: warehouse
+      stripPrefix: false
+      sensitiveHeaders: "*"
+
+    products:
+      path: /restful/products/**
+      serviceId: warehouse
+      stripPrefix: false
+      sensitiveHeaders: "*"
+
+    security:
+      path: /oauth/**
+      serviceId: security
+      stripPrefix: false
+      sensitiveHeaders: "*"
+
+server:
+  port: ${PORT:8080}
+
+logging:
+  level:
+    root: INFO

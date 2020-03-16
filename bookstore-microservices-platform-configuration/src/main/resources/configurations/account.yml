@@ -1,0 +1,41 @@
+database: hsqldb
+
+spring:
+  datasource:
+    schema: "classpath:db/${database}/schema.sql"
+    data: "classpath:db/${database}/data.sql"
+    sql-script-encoding: UTF-8
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+  resources:
+    chain:
+      compressed: true
+      cache: true
+    cache:
+      period: 86400
+
+security:
+  oauth2:
+    client:
+      # OAuth的ClientID和ClientSecret是写在OAuthClientDetailsService中的
+      # 实际生产中要考虑好如何获取验证服务器的Endpoint、动态增加微服务客户端、如何分发客户端密钥等问题，而在演示工程中并不关注这些
+      clientId: account
+      clientSecret: account_secret
+      accessTokenUri: http://${AUTH_HOST:localhost}:${AUTH_PORT:8301}/oauth/token
+      grant-type: client_credentials
+      scope: SERVICE
+    resource:
+      userInfoUri: BUGFIX
+
+
+logging:
+  pattern:
+    console: "%clr(%d{HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:%5p}) %clr(-){faint} %clr([%t]){faint} %clr(%-40logger{39}){cyan}[%line]%clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}"
+  level:
+    root: INFO
+
+server:
+  port: ${PORT:8401}

@@ -1,0 +1,20 @@
+spring:
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/configurations
+  profiles:
+    active: native
+  security:
+    user:
+      password: ${CONFIG_PASS:dev}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+server:
+  port: ${PORT:8888}

@@ -22,6 +22,7 @@ services:
       - platform-configuration
     environment:
       CONFIG_HOST: platform-configuration
+      REGISTRY_HOST: platform-registry
     restart: always
     ports:
       - 8080:8080
@@ -33,6 +34,7 @@ services:
       - platform-registry
     environment:
       CONFIG_HOST: platform-configuration
+      REGISTRY_HOST: platform-registry
     restart: always
     ports:
       - 8301:8301
@@ -44,6 +46,7 @@ services:
       - platform-registry
     environment:
       CONFIG_HOST: platform-configuration
+      REGISTRY_HOST: platform-registry
       AUTH_HOST: domain-security
     restart: always
     ports:
@@ -56,6 +59,7 @@ services:
       - platform-registry
     environment:
       CONFIG_HOST: platform-configuration
+      REGISTRY_HOST: platform-registry
       AUTH_HOST: domain-security
     restart: always
     ports:
@@ -68,6 +72,7 @@ services:
       - platform-registry
     environment:
       CONFIG_HOST: platform-configuration
+      REGISTRY_HOST: platform-registry
       AUTH_HOST: domain-security
     restart: always
     ports:

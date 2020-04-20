@@ -6,7 +6,8 @@ before_install:
 install:
   - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 script:
-  - mvn clean test package jacoco:report coveralls:report -DrepoToken=$repoToken
+#  - mvn clean test package jacoco:report coveralls:report -DrepoToken=$repoToken
+  - mvn clean package
 deploy:
   - provider: script
     keep_history: true
@@ -14,4 +15,3 @@ deploy:
     script: bash travis_docker_push.sh
     on:
       branch: master
-

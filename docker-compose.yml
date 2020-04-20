@@ -1,0 +1,81 @@
+version: '2.1'
+services:
+  platform-configuration:
+    image: icyfenix/bookstore-springcloud:platform-configuration
+    restart: always
+    ports:
+      - 8888:8888
+
+  platform-registry:
+    image: icyfenix/bookstore-springcloud:platform-registry
+    environment:
+      CONFIG_HOST: platform-configuration
+    restart: always
+    depends_on:
+      platform-configuration:
+        condition: service_healthy
+    ports:
+      - 8761:8761
+
+  platform-gateway:
+    image: icyfenix/bookstore-springcloud:platform-gateway
+    depends_on:
+      platform-configuration:
+        condition: service_healthy
+    environment:
+      CONFIG_HOST: platform-configuration
+      REGISTRY_HOST: platform-registry
+    restart: always
+    ports:
+      - 8080:8080
+
+  domain-security:
+    image: icyfenix/bookstore-springcloud:domain-security
+    depends_on:
+      platform-configuration:
+        condition: service_healthy
+    environment:
+      CONFIG_HOST: platform-configuration
+      REGISTRY_HOST: platform-registry
+    restart: always
+    ports:
+      - 8301:8301
+
+  domain-account:
+    image: icyfenix/bookstore-springcloud:domain-account
+    depends_on:
+      platform-configuration:
+        condition: service_healthy
+    environment:
+      CONFIG_HOST: platform-configuration
+      REGISTRY_HOST: platform-registry
+      AUTH_HOST: domain-security
+    restart: always
+    ports:
+      - 8401:8401
+
+  domain-warehouse:
+    image: icyfenix/bookstore-springcloud:domain-warehouse
+    depends_on:
+      platform-configuration:
+        condition: service_healthy
+    environment:
+      CONFIG_HOST: platform-configuration
+      REGISTRY_HOST: platform-registry
+      AUTH_HOST: domain-security
+    restart: always
+    ports:
+      - 8501:8501
+
+  domain-payment:
+    image: icyfenix/bookstore-springcloud:domain-payment
+    depends_on:
+      platform-configuration:
+        condition: service_healthy
+    environment:
+      CONFIG_HOST: platform-configuration
+      REGISTRY_HOST: platform-registry
+      AUTH_HOST: domain-security
+    restart: always
+    ports:
+      - 8601:8601

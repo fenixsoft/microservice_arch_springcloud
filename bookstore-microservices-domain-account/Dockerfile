@@ -5,6 +5,8 @@ MAINTAINER icyfenix
 ENV SPRING_OUTPUT_ANSI_ENABLED=ALWAYS \
     JAVA_OPTS="" \
     PORT=8401 \
+    CONFIG_PORT=8888 \
+    AUTH_PORT=8301 \
     PROFILES="default"
 
 ADD /target/*.jar /bookstore-account.jar

@@ -25,7 +25,115 @@
 
 以下几种途径，可以运行程序，浏览最终的效果：
 
+- 通过Docker容器方式运行：<br/>微服务涉及到多个容器的协作，通过link单独运行容器已经被Docker官方声明为不提倡的方式，所以在工程中提供了专门的配置，以便使用docker-compose来运行：
 
+  ```bash
+  # 下载配置文件
+  $ curl -O https://raw.githubusercontent.com/fenixsoft/microservice_arch_springcloud/master/docker-compose.yml
+  
+  # 启动服务
+  $ docker-compose up
+  ```
+
+  然后在浏览器访问：[http://localhost:8080](http://localhost:8080)
+
+- 通过Git上的源码，以Maven运行：<br/>由于笔者已经在配置文件中设置好了各个服务默认的地址（localhost）和端口号以便于本地调试，如在同一台机运行这些服务，并且每个微服务都只启动一个实例的话，不加配置即可运行。由于各个微服务需要从配置中心里获取具体的参数信息，因此要求配置中心的微服务必须作为第一个启动的服务，其他的启动顺序则没有更多要求。
+
+  ``` bash
+  # 克隆获取源码
+  $ git clone https://github.com/fenixsoft/microservice_arch_springcloud.git
+  
+  # 进入工程根目录
+  $ cd microservice_arch_springcloud
+  
+  # 编译打包（方式1）
+  # 采用Maven Wrapper，此方式只需要机器安装有JDK 8或以上版本即可，无需包括Maven在内的其他任何依赖
+  # 如在Windows下应使用mvnw.cmd package代替以下命令
+  $ ./mvnw package
+  
+  # 编译打包（方式2）
+  # 直接采用Maven，由于国内访问Apache Maven的分发地址和中央仓库速度感人
+  # 采用Maven Wrapper有可能长时间无响应，如你机器已安装了Maven，建议使用如下命令
+  $ mvn package
+  
+  # 工程将编译出七个SpringBoot JAR
+  # 启动服务需要运行以下七个微服务组件
+  # 配置中心
+  $ java -jar ./bookstore-microservices-platform-configuration/target/bookstore-microservice-platform-configuration-1.0.0-SNAPSHOT.jar
+  # 服务发现
+  $ java -jar ./bookstore-microservices-platform-registry/target/bookstore-microservices-platform-registry-1.0.0-SNAPSHOT.jar
+  # 服务网关
+  $ java -jar ./bookstore-microservices-platform-gateway/target/bookstore-microservices-platform-gateway-1.0.0-SNAPSHOT.jar
+  # 安全认证微服务
+  $ java -jar ./bookstore-microservices-domain-security/target/bookstore-microservices-domain-security-1.0.0-SNAPSHOT.jar
+  # 用户信息微服务
+  $ java -jar ./bookstore-microservices-domain-account/target/bookstore-microservices-domain-account-1.0.0-SNAPSHOT.jar
+  # 商品仓库微服务
+  $ java -jar ./bookstore-microservices-domain-warehouse/target/bookstore-microservices-domain-warehouse-1.0.0-SNAPSHOT.jar
+  # 交易微服务
+  $ java -jar ./bookstore-microservices-domain-payment/target/bookstore-microservices-domain-payment-1.0.0-SNAPSHOT.jar
+  ```
+
+  由于在命令行启动多个服务、通过容器实现各服务隔离、扩展等都较为麻烦，笔者提供了一个docker-compose.dev.yml文件，便于开发期调试使用：
+
+  ```bash
+  # 使用Maven编译出JAR包后，可使用以下命令直接在本地构建镜像运行
+  $ docker-compose -f docker-compose.dev.yml up
+  ```
+
+  以上两种本地运行的方式任选其一，然后在浏览器访问：[http://localhost:8080](http://localhost:8080)<br/>
+
+- 通过Git上的源码，在IDE环境中运行：
+
+  - 以IntelliJ IDEA为例，Git克隆本项目后，在File -> Open菜单选择本项目所在的目录，或者pom.xml文件，以Maven方式导入工程。
+  - 待Maven自动安装依赖后，即可在IDE或者Maven面板中编译程序。
+  - 本工程下面八个模块，其中除bookstore-microservices-library-infrastructure外，其余均是SpringBoot工程，将这七个工程的Application类加入到Run Dashboard中。
+  - 在Run Dashboard中先启动配置中心，然后一次性启动其余六个工程。
+
+- 配置与横向扩展<br/>工程中预留了一些的环境变量，便于配置和扩展，譬如，对于热点模块，往往需要启动多个微服务扩容，此时需要调整每个服务的端口号。预留的这类环境变量包括：
+
+  ```
+  # 修改配置中心的主机和端口，默认为localhost:8888
+  CONFIG_HOST
+  CONFIG_PORT
+  
+  # 修改服务发现的主机和端口，默认为localhost:8761
+  REGISTRY_HOST
+  REGISTRY_PORT
+  
+  # 修改认证中心的主机和端口，默认为localhost:8301
+  AUTH_HOST
+  AUTH_PORT
+  
+  # 修改当前微服务的端口号
+  # 譬如，你打算在一台机器上扩容四个支付微服务以应对促销活动
+  # 可将它们的端口设置为8601（默认）、8602、8603、8604等
+  # 如果是在不同的物理机、容器环境下扩容则可无需调整
+  PORT
+  
+  # SpringBoot所采用配置文件，默认为default
+  # 譬如，服务默认使用HSQLDB的内存模式作为数据库，如需调整为MySQL，可将此环境变量调整为mysql
+  # 笔者同时预置了HSQLDB和MySQL的数据库脚本，如需支持其他数据库，需自行准备初始化脚本
+  PROFILES
+  
+  # Java虚拟机运行参数，默认为空
+  JAVA_OPTS
+  ```
+  
+## 技术组件
+
+Fenix's BookStore采用基于SpringCloud微服务架构，微服务部分主要采用了Netflix OSS组件进行构建，包括：
+
+- [Spring Cloud Config](https://spring.io/projects/spring-cloud-config)：配置中心。可使用[Spring Cloud Consul](https://spring.io/projects/spring-cloud-consul)、[Spring Cloud Alibaba Nacos](https://spring.io/projects/spring-cloud-alibaba)代替。
+- [Netflix Eureka](https://github.com/Netflix/eureka)：服务发现，可使用[Spring Cloud Consul](https://spring.io/projects/spring-cloud-consul)、[Spring Cloud Zookeeper](https://spring.io/projects/spring-cloud-zookeeper)、[etcd](https://github.com/etcd-io/etcd)等代替。
+- [Netflix Zuul](https://github.com/Netflix/zuul)：服务网关。可使用[Spring Cloud Gateway](https://spring.io/projects/spring-cloud-gateway)代替。
+- [Netflix Hystrix](https://github.com/Netflix/Hystrix)：断路器。可使用[Sentinel](https://github.com/alibaba/Sentinel)、[Resilience4j](https://github.com/resilience4j/resilience4j)代替
+- [Netfilix Ribbon](https://github.com/Netflix/ribbon)：进程内负载均衡。可使用
+- [OpenFeign](https://github.com/OpenFeign/feign)：声明式的HTTP客户端。
+
+尽管Netflix的使用人数最多，但由于Spring Cloud Netflix已进入维护模式，所以笔者均列出了上述组件的代替品。这些组件几乎都是声明式的，要替代它们几乎是没有成本的。你在阅读源码时也会发现，三个“platform”开头的服务，基本上没有任何实际代码的存在。
+
+其他与微服务无关的组件（REST服务、安全、数据访问，等等），已在Fenix's BookStore单体架构中介绍过，在此不再重复。
 
 
 ## 协议

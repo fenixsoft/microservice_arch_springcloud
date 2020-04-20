@@ -14,5 +14,5 @@ ADD /target/*.jar /config.jar
 ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar /config.jar --spring.profiles.active=$PROFILES"]
 
 HEALTHCHECK --interval=5s --timeout=30s CMD curl -f http://localhost:$PORT/actuator/health || exit 1
-docker
+
 EXPOSE $PORT

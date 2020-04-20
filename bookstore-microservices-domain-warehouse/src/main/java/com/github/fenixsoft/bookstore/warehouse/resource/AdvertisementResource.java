@@ -21,7 +21,6 @@ package com.github.fenixsoft.bookstore.warehouse.resource;
 import com.github.fenixsoft.bookstore.warehouse.domain.Advertisement;
 import com.github.fenixsoft.bookstore.warehouse.domain.AdvertisementRepository;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
@@ -46,7 +45,6 @@ public class AdvertisementResource {
 
     @GET
     @Cacheable("resource.advertisements")
-    @PreAuthorize("#oauth2.hasAnyScope('BROWSER')")
     public Iterable<Advertisement> getAllAdvertisements() {
         return repository.findAll();
     }

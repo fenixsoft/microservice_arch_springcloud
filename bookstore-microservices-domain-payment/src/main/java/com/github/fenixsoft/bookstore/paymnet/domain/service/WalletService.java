@@ -47,15 +47,7 @@ public class WalletService {
      * 账户资金减少
      */
     public void decrease(Integer accountId, Double amount) {
-        Wallet wallet = repository.findByAccountId(accountId).orElseGet(() -> {
-            Wallet newWallet = new Wallet();
-            Account account = new Account();
-            account.setId(accountId);
-            newWallet.setMoney(0D);
-            newWallet.setAccount(account);
-            repository.save(newWallet);
-            return newWallet;
-        });
+        Wallet wallet = repository.findByAccountId(accountId).orElseGet(() -> repository.save(new Wallet(accountId, 0D)));
         if (wallet.getMoney() > amount) {
             wallet.setMoney(wallet.getMoney() - amount);
             repository.save(wallet);

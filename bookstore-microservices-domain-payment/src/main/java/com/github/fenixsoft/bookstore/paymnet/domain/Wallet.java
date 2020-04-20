@@ -36,12 +36,19 @@ import javax.persistence.OneToOne;
 @Entity
 public class Wallet extends BaseEntity {
 
+    public Wallet() {
+        // for JPA
+    }
+
+    public Wallet(Integer accountId, Double money) {
+        setAccountId(accountId);
+        setMoney(money);
+    }
+
     // 这里是偷懒，正式项目中请使用BigDecimal来表示金额
     private Double money;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "account_id")
-    private Account account;
+    private Integer accountId;
 
     public Double getMoney() {
         return money;
@@ -51,11 +58,11 @@ public class Wallet extends BaseEntity {
         this.money = money;
     }
 
-    public Account getAccount() {
-        return account;
+    public Integer getAccountId() {
+        return accountId;
     }
 
-    public void setAccount(Account account) {
-        this.account = account;
+    public void setAccountId(Integer accountId) {
+        this.accountId = accountId;
     }
 }

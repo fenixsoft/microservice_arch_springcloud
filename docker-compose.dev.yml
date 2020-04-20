@@ -12,14 +12,16 @@ services:
       CONFIG_HOST: platform-configuration
     restart: always
     depends_on:
-      - platform-configuration
+      platform-configuration:
+        condition: service_healthy
     ports:
       - 8761:8761
 
   platform-gateway:
     build: bookstore-microservices-platform-gateway
     depends_on:
-      - platform-configuration
+      platform-configuration:
+        condition: service_healthy
     environment:
       CONFIG_HOST: platform-configuration
       REGISTRY_HOST: platform-registry
@@ -30,8 +32,8 @@ services:
   domain-security:
     build: bookstore-microservices-domain-security
     depends_on:
-      - platform-configuration
-      - platform-registry
+      platform-configuration:
+        condition: service_healthy
     environment:
       CONFIG_HOST: platform-configuration
       REGISTRY_HOST: platform-registry
@@ -42,8 +44,8 @@ services:
   domain-account:
     build: bookstore-microservices-domain-account
     depends_on:
-      - platform-configuration
-      - platform-registry
+      platform-configuration:
+        condition: service_healthy
     environment:
       CONFIG_HOST: platform-configuration
       REGISTRY_HOST: platform-registry
@@ -55,8 +57,8 @@ services:
   domain-warehouse:
     build: bookstore-microservices-domain-warehouse
     depends_on:
-      - platform-configuration
-      - platform-registry
+      platform-configuration:
+        condition: service_healthy
     environment:
       CONFIG_HOST: platform-configuration
       REGISTRY_HOST: platform-registry
@@ -68,8 +70,8 @@ services:
   domain-payment:
     build: bookstore-microservices-domain-payment
     depends_on:
-      - platform-configuration
-      - platform-registry
+      platform-configuration:
+        condition: service_healthy
     environment:
       CONFIG_HOST: platform-configuration
       REGISTRY_HOST: platform-registry

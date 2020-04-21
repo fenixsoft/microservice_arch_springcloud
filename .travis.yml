@@ -1,6 +1,6 @@
 language: java
 jdk:
-  - openjdk12
+  - openjdk8
 before_install:
   - export TZ='Asia/Shanghai'
 install:

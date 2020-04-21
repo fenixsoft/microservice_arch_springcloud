@@ -1,14 +1,13 @@
 language: java
 jdk:
-  - openjdk8
+  - openjdk12
 before_install:
   - export TZ='Asia/Shanghai'
 install:
   - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 script:
 #  - mvn clean test package jacoco:report coveralls:report -DrepoToken=$repoToken
-  - mvn clean package cobertura:cobertura
-  - bash <(curl -s https://codecov.io/bash)
+  - mvn clean package
 deploy:
   - provider: script
     keep_history: true

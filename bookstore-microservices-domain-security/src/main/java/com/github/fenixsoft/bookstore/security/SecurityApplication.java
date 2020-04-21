@@ -11,10 +11,8 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @author icyfenix@gmail.com
  * @date 2020/4/18 11:17
  **/
-// @EnableCaching
 @EnableDiscoveryClient
 @SpringBootApplication(scanBasePackages = {"com.github.fenixsoft.bookstore"})
-// @EnableGlobalMethodSecurity(prePostEnabled = true, jsr250Enabled = true)
 public class SecurityApplication {
     public static void main(String[] args) {
         SpringApplication.run(SecurityApplication.class, args);

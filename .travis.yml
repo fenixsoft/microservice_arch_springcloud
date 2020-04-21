@@ -7,7 +7,7 @@ install:
   - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 script:
 #  - mvn clean test package jacoco:report coveralls:report -DrepoToken=$repoToken
-  - mvn clean package
+  - mvn clean package cobertura:cobertura
   - bash <(curl -s https://codecov.io/bash)
 deploy:
   - provider: script

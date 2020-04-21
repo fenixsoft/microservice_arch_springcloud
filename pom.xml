@@ -13,6 +13,7 @@
         <module>bookstore-microservices-domain-warehouse</module>
         <module>bookstore-microservices-library-infrastructure</module>
         <module>bookstore-microservices-library-testing</module>
+        <module>bookstore-microservices-report-aggregation</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -55,10 +56,26 @@
                 </configuration>
             </plugin>
             <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.5</version>
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.eluder.coveralls</groupId>
                 <artifactId>coveralls-maven-plugin</artifactId>
                 <version>4.3.0</version>
                 <configuration>
+                    <jacocoReports>
+                        <jacocoReport>${project.basedir}/bookstore-microservices-report-aggregation/target/site/jacoco-aggregate/jacoco.xml</jacocoReport>
+                    </jacocoReports>
                 </configuration>
                 <dependencies>
                     <dependency>
@@ -67,20 +84,6 @@
                         <version>2.2.3</version>
                     </dependency>
                 </dependencies>
-            </plugin>
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.5</version>
-                <executions>
-                    <execution>
-                        <id>default-report</id>
-                        <phase>test</phase>
-                        <goals>
-                            <goal>report-aggregate</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>

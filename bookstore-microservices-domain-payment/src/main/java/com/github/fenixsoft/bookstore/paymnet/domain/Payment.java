@@ -56,7 +56,11 @@ public class Payment extends BaseEntity {
         /**
          * 已超时回滚（未支付，并且商品已恢复）
          */
-        TIMEOUT
+        TIMEOUT,
+        /**
+         * 不支持的模式（仅用在测试中）
+         */
+        NOT_SUPPORT
     }
 
     public Payment() {
@@ -69,9 +73,13 @@ public class Payment extends BaseEntity {
         setPayState(State.WAITING);
         // 下面这两个是随便写的，实际应该根据情况调用支付服务，返回待支付的ID
         setPayId(UUID.randomUUID().toString());
-        // 产生支付单的时候一定是有用户的
-        Account account = (Account) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        setPaymentLink("/pay/modify/" + getPayId() + "?state=PAYED&accountId=" + account.getId());
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof Account) {
+            // 产生支付单的时候是有用户的
+            setPaymentLink("/pay/modify/" + getPayId() + "?state=PAYED&accountId=" + ((Account) principal).getId());
+        } else {
+            setPaymentLink("/pay/modify/" + getPayId() + "?state=PAYED");
+        }
     }
 
     private Date createTime;

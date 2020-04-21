@@ -17,27 +17,33 @@ class AccountResourceTest extends JAXRSResourceBase {
     @Test
     void getUserWithExistAccount() {
         Response resp = get("/accounts/icyfenix");
-        assertOK(resp);
-        Account icyfenix = resp.readEntity(Account.class);
-        assertEquals("icyfenix", icyfenix.getUsername(), "should return user: icyfenix");
+        assertForbidden(resp);
+        authenticatedScope(() -> {
+            Response resp2 = get("/accounts/icyfenix");
+            Account icyfenix = resp2.readEntity(Account.class);
+            assertEquals("icyfenix", icyfenix.getUsername(), "should return user: icyfenix");
+        });
     }
 
     @Test
     void getUserWithNotExistAccount() {
-        assertNoContent(get("/accounts/nobody"));
+        authenticatedScope(() -> assertNoContent(get("/accounts/nobody")));
+
     }
 
     @Test
     void createUser() {
-        Account newbee = new Account();
-        newbee.setUsername("newbee");
-        newbee.setEmail("newbee@github.com");
-        assertBadRequest(post("/accounts", newbee));
-        newbee.setTelephone("13888888888");
-        newbee.setName("somebody");
-        assertNoContent(get("/accounts/newbee"));
-        assertOK(post("/accounts", newbee));
-        assertOK(get("/accounts/newbee"));
+        authenticatedScope(() -> {
+            Account newbee = new Account();
+            newbee.setUsername("newbee");
+            newbee.setEmail("newbee@github.com");
+            assertBadRequest(post("/accounts", newbee));
+            newbee.setTelephone("13888888888");
+            newbee.setName("somebody");
+            assertNoContent(get("/accounts/newbee"));
+            assertOK(post("/accounts", newbee));
+            assertOK(get("/accounts/newbee"));
+        });
     }
 
     @Test

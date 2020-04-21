@@ -51,6 +51,7 @@ import javax.annotation.security.RolesAllowed;
  **/
 @Configuration
 @EnableResourceServer
+@EnableGlobalMethodSecurity(prePostEnabled = true, jsr250Enabled = true)
 public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
 
     @Autowired

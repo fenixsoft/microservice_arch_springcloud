@@ -26,7 +26,6 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 
 @EnableCaching
 @EnableDiscoveryClient
-@EnableGlobalMethodSecurity(prePostEnabled = true, jsr250Enabled = true)
 @SpringBootApplication(scanBasePackages = {"com.github.fenixsoft.bookstore"})
 public class AccountApplication {
     public static void main(String[] args) {

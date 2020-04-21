@@ -8,6 +8,7 @@ install:
 script:
 #  - mvn clean test package jacoco:report coveralls:report -DrepoToken=$repoToken
   - mvn clean package
+  - bash <(curl -s https://codecov.io/bash)
 deploy:
   - provider: script
     keep_history: true

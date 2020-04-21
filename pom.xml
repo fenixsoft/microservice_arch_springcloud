@@ -12,6 +12,7 @@
         <module>bookstore-microservices-domain-account</module>
         <module>bookstore-microservices-domain-warehouse</module>
         <module>bookstore-microservices-library-infrastructure</module>
+        <module>bookstore-microservices-library-testing</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -30,24 +31,6 @@
         <argLine>-Dfile.encoding=UTF-8</argLine>
         <spring-cloud.version>Hoxton.SR3</spring-cloud.version>
     </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.junit.vintage</groupId>
-                    <artifactId>junit-vintage-engine</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-    </dependencies>
 
     <dependencyManagement>
         <dependencies>
@@ -91,9 +74,10 @@
                 <version>0.8.5</version>
                 <executions>
                     <execution>
-                        <id>prepare-agent</id>
+                        <id>default-report</id>
+                        <phase>test</phase>
                         <goals>
-                            <goal>prepare-agent</goal>
+                            <goal>report-aggregate</goal>
                         </goals>
                     </execution>
                 </executions>

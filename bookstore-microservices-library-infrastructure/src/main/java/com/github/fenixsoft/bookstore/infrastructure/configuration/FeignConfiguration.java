@@ -7,6 +7,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.cloud.security.oauth2.client.feign.OAuth2FeignRequestInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.oauth2.client.DefaultOAuth2ClientContext;
 import org.springframework.security.oauth2.client.token.grant.client.ClientCredentialsResourceDetails;
 
@@ -22,6 +23,7 @@ import javax.inject.Inject;
  * @date 2020/4/18 22:38
  **/
 @Configuration
+@Profile("!test")
 @EnableFeignClients(basePackages = {"com.github.fenixsoft.bookstore"})
 public class FeignConfiguration {
 

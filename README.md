@@ -3,16 +3,16 @@
 
 <p align="center">
   <a href="https://icyfenix.cn" target="_blank">
-    <img width="180" src="https://icyfenix.cn/images/logo-color.png" alt="logo">
+    <img width="180" src="https://raw.githubusercontent.com/fenixsoft/awesome-fenix/master/.vuepress/public/images/logo-color.png" alt="logo">
   </a>
 </p>
 <p align="center">
-    <a href="https://icyfenix.cn"  style="display:inline-block"><img src="https://icyfenix.cn/images/Release-v1.svg"></a>
+    <a href="https://icyfenix.cn"  style="display:inline-block"><img src="https://raw.githubusercontent.com/fenixsoft/awesome-fenix/master/.vuepress/public/images/Release-v1.svg"></a>
     <a href="https://travis-ci.com/fenixsoft/microservice_arch_springcloud" target="_blank"  style="display:inline-block"><img src="https://travis-ci.com/fenixsoft/microservice_arch_springcloud.svg?branch=master" alt="Travis-CI"></a>
     <a href='https://coveralls.io/github/fenixsoft/microservice_arch_springcloud?branch=master'><img src='https://coveralls.io/repos/github/fenixsoft/microservice_arch_springcloud/badge.svg?branch=master'  target="_blank"  style="display:inline-block" alt='Coverage Status' /></a>
-    <a href="https://www.apache.org/licenses/LICENSE-2.0"  target="_blank" style="display:inline-block"><img src="https://icyfenix.cn/images/License-Apache.svg" alt="License"></a>
-<a href="https://creativecommons.org/licenses/by/4.0/"  target="_blank" style="display:inline-block"><img src="https://icyfenix.cn/images/DocLicense-CC-red.svg" alt="Document License"></a>
-    <a href="https://icyfenix.cn/introduction/about-me.html" target="_blank" style="display:inline-block"><img src="https://icyfenix.cn/images/Author-IcyFenix-blue.svg" alt="About Author"></a>
+    <a href="https://www.apache.org/licenses/LICENSE-2.0"  target="_blank" style="display:inline-block"><img src="https://raw.githubusercontent.com/fenixsoft/awesome-fenix/master/.vuepress/public/images/License-Apache.svg" alt="License"></a>
+<a href="https://creativecommons.org/licenses/by/4.0/"  target="_blank" style="display:inline-block"><img src="https://raw.githubusercontent.com/fenixsoft/awesome-fenix/master/.vuepress/public/images/DocLicense-CC-red.svg" alt="Document License"></a>
+    <a href="https://icyfenix.cn/introduction/about-me.html" target="_blank" style="display:inline-block"><img src="https://raw.githubusercontent.com/fenixsoft/awesome-fenix/master/.vuepress/public/images/Author-IcyFenix-blue.svg" alt="About Author"></a>
 </p>
 
 

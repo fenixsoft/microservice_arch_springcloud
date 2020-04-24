@@ -77,6 +77,55 @@
   
   # 工程将编译出七个SpringBoot Jar
   # 启动服务需要运行以下七个微服务组件
+  # 配置中心微服务：localhost:8888容以应对流量洪峰。但此时增长的业务量并不是均衡的，只有商品交易的活动剧增，其他的活动，如新商品入库、新用户注册这类并未增加多少，此时，面对“铁板一块”的单体系统，运维在做扩容时，只能把“用不上的”商品管理代码、用户管理代码也一并扩容部署。
+- 譬如，高性能硬件对性能的提升是有帮助，但对稳定性的提升通常无能为力。业务复杂度的增加促使系统的技术复杂度也在持续增长，当系统不可避免地滑向庞大臃肿时，总伴随有各种难以预料的问题出现；要维持一个庞然大物的健康生存，也对设计、开发、运维各方面的人员都提出越来越高的要求。人力终有穷时，迟早会面临“没有一个人能了解系统的所有细节”的情形；系统的复杂程度也总有极限，持续膨胀的代码终会有崩溃的一刻。
+- 譬如，……
+
+微服务的需求场景还可以列举很多，这里就不多列举了，总之，系统发展到一定程度，我们总能找到充分的理由去重构拆分它。在笔者设定的场景中，准备把[单体的Fenix's Bookstore](https://icyfenix.cn/exploration/projects/monolithic_arch_springboot.html)拆分成为“用户”、“商品”、“交易”三个能够独立运行的子系统，它们将在一系列非功能性额技术模块（认证授权等）和基础设施（配置中心、服务发现等）的支撑下互相协作，以统一的API网关对外提供与原来单体系统在功能上一致的服务，应用视图如下图所示：
+
+<GitHubWrapper>
+<p align="center">
+    <img  src="https://raw.githubusercontent.com/fenixsoft/awesome-fenix/master/.vuepress/public/images/springcloud-ms.png" >
+</p>
+</GitHubWrapper>
+
+## 运行程序
+
+以下几种途径，可以运行程序，浏览最终的效果：
+
+- 通过Docker容器方式运行：<br/>微服务涉及到多个容器的协作，通过link单独运行容器已经被Docker官方声明为不提倡的方式，所以在工程中提供了专门的配置，以便使用docker-compose来运行：
+
+  ```bash
+  # 下载docker-compose配置文件
+  $ curl -O https://raw.githubusercontent.com/fenixsoft/microservice_arch_springcloud/master/docker-compose.yml
+  
+  # 启动服务
+  $ docker-compose up
+  ```
+
+  然后在浏览器访问：[http://localhost:8080](http://localhost:8080)
+
+- 通过Git上的源码，以Maven编译、运行：<br/>由于笔者已经在配置文件中设置好了各个微服务的默认的地址和端口号，以便于本地调试。如果要在同一台机运行这些服务，并且每个微服务都只启动一个实例的话，那不加任何配置、参数即可正常以Maven编译、以Jar包形式运行。由于各个微服务需要从配置中心里获取具体的参数信息，因此唯一的要求只是“配置中心”的微服务必须作为第一个启动的服务进程，对其他的启动顺序则没有更多要求了。具体的操作过程如下所示：
+
+  ``` bash
+  # 克隆获取源码
+  $ git clone https://github.com/fenixsoft/microservice_arch_springcloud.git
+  
+  # 进入工程根目录
+  $ cd microservice_arch_springcloud
+  
+  # 编译打包（方式1）
+  # 采用Maven Wrapper，此方式只需要机器安装有JDK 8或以上版本即可，无需包括Maven在内的其他任何依赖
+  # 克隆后你可能需要使用chmod给mvnw赋予执行权限，如在Windows下应使用mvnw.cmd package代替以下命令
+  $ ./mvnw package
+  
+  # 编译打包（方式2）
+  # 直接采用Maven，由于国内访问Apache Maven的分发地址和中央仓库速度感人
+  # 采用Maven Wrapper有可能长时间无响应，如你机器已安装了Maven，建议使用如下命令
+  $ mvn package
+  
+  # 工程将编译出七个SpringBoot Jar
+  # 启动服务需要运行以下七个微服务组件
   # 配置中心微服务：localhost:8888
   $ java -jar ./bookstore-microservices-platform-configuration/target/bookstore-microservice-platform-configuration-1.0.0-SNAPSHOT.jar
   # 服务发现微服务：localhost:8761

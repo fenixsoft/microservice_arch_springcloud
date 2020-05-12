@@ -33,6 +33,20 @@
         <spring-cloud.version>Hoxton.SR3</spring-cloud.version>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -74,7 +88,9 @@
                 <version>4.3.0</version>
                 <configuration>
                     <jacocoReports>
-                        <jacocoReport>${project.basedir}/bookstore-microservices-report-aggregation/target/site/jacoco-aggregate/jacoco.xml</jacocoReport>
+                        <jacocoReport>
+                            ${project.basedir}/bookstore-microservices-report-aggregation/target/site/jacoco-aggregate/jacoco.xml
+                        </jacocoReport>
                     </jacocoReports>
                 </configuration>
                 <dependencies>

@@ -27,8 +27,8 @@ security:
     client:
       # OAuth的ClientID和ClientSecret是写在OAuthClientDetailsService中的
       # 实际生产中要考虑好如何获取验证服务器的Endpoint、动态增加微服务客户端、如何分发客户端密钥等问题，而在演示工程中并不关注这些
-      clientId: account
-      clientSecret: account_secret
+      clientId: payment
+      clientSecret: payment_secret
       accessTokenUri: http://${AUTH_HOST:localhost}:${AUTH_PORT:8301}/oauth/token
       grant-type: client_credentials
       scope: SERVICE

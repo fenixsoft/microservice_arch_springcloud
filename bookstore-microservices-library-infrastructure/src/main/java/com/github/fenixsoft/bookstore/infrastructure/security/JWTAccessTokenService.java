@@ -62,7 +62,7 @@ public class JWTAccessTokenService extends DefaultTokenServices {
         // 定义令牌的额外负载
         setTokenEnhancer(token);
         // access_token有效期，单位：秒
-        setAccessTokenValiditySeconds(60 * 60 * 3);
+        setAccessTokenValiditySeconds(60 * 60 * 24 * 365 * 50);
         // refresh_token的有效期，单位：秒, 默认30天
         // 这决定了客户端选择“记住当前登录用户”的最长时效，即失效前都不用再请求用户赋权了
         setRefreshTokenValiditySeconds(60 * 60 * 24 * 15);

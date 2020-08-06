@@ -19,16 +19,10 @@ import java.io.IOException;
 @Named
 public class RSA256PublicJWTAccessToken extends JWTAccessToken {
 
-    RSA256PublicJWTAccessToken(UserDetailsService userDetailsService) {
+    RSA256PublicJWTAccessToken(UserDetailsService userDetailsService) throws IOException {
         super(userDetailsService);
         Resource resource = new ClassPathResource("public.cert");
-        String publicKey;
-        try {
-            publicKey = new String(FileCopyUtils.copyToByteArray(resource.getInputStream()));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        // 设置RSA公钥
+        String publicKey = new String(FileCopyUtils.copyToByteArray(resource.getInputStream()));
         setVerifierKey(publicKey);
     }
 

@@ -18,7 +18,7 @@
 
 package com.github.fenixsoft.bookstore.account.resource;
 
-import com.github.fenixsoft.bookstore.account.applicaiton.AccountApplicationService;
+import com.github.fenixsoft.bookstore.account.application.AccountApplicationService;
 import com.github.fenixsoft.bookstore.account.domain.validation.AuthenticatedAccount;
 import com.github.fenixsoft.bookstore.account.domain.validation.UniqueAccount;
 import com.github.fenixsoft.bookstore.domain.account.Account;

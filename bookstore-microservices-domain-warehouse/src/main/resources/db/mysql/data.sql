@@ -27,8 +27,8 @@ VALUES (7, '深入理解Java虚拟机', 69, 8.6,
         '<p>作为一位Java程序员，你是否也曾经想深入理解Java虚拟机，但是却被它的复杂和深奥拒之门外？没关系，本书极尽化繁为简之妙，能带领你在轻松中领略Java虚拟机的奥秘。本书是近年来国内出版的唯一一本与Java虚拟机相关的专著，也是唯一一本同时从核心理论和实际运用这两个角度去探讨Java虚拟机的著作，不仅理论分析得透彻，而且书中包含的典型案例和最佳实践也极具现实指导意义。</p><p>全书共分为五大部分。第一部分从宏观的角度介绍了整个Java技术体系的过去、现在和未来，以及如何独立地编译一个OpenJDK7，这对理解后面的内容很有帮助。第二部分讲解了JVM的自动内存管理，包括虚拟机内存区域的划分原理以及各种内存溢出异常产生的原因；常见的垃圾收集算法以及垃圾收集器的特点和工作原理；常见的虚拟机的监控与调试工具的原理和使用方法。第三部分分析了虚拟机的执行子系统，包括Class的文件结构以及如何存储和访问Class中的数据；虚拟机的类创建机制以及类加载器的工作原理和它对虚拟机的意义；虚拟机字节码的执行引擎以及它在实行代码时涉及的内存结构。第四部分讲解了程序的编译与代码的优化，阐述了泛型、自动装箱拆箱、条件编译等语法糖的原理；讲解了虚拟机的热点探测方法、HotSpot的即时编译器、编译触发条件，以及如何从虚拟机外部观察和分析JIT编译的数据和结果。第五部分探讨了Java实现高效并发的原理，包括JVM内存模型的结构和操作；原子性、可见性和有序性在Java内存模型中的体现；先行发生原则的规则和使用；线程在Java语言中的实现原理；虚拟机实现高效并发所做的一系列锁优化措施。</p>',
         '/static/cover/jvm1.jpg', '');
 INSERT INTO product
-VALUES (8, '现代软件架构探索', 0, 0,
-        '<p>这是什么？</p><p>简单地说，这是针对软件开发中不同架构、技术方案（如单体架构、微服务、服务网格、无服务架构、云原生等等）的演示程序。包含可以作为实际项目开发参考的样例代码（PetStore-Like-Project），以及作者对这些架构的使用方法、优劣理解。</p>',
+VALUES (8, '凤凰架构：构建可靠的大型分布式系统', 0, 0,
+        '<p>这是一部以“如何构建一套可靠的分布式大型软件系统”为叙事主线的开源文档，是一幅帮助开发人员整理现代软件架构各条分支中繁多知识点的技能地图。文章《<a href="https://icyfenix.cn/introduction/about-the-fenix-project.html" target=_blank>什么是“凤凰架构”</a>》详细阐述了这部文档的主旨、目标与名字的来由，文章《<a href="https://icyfenix.cn/exploration/guide/quick-start.html" target=_blank>如何开始</a>》简述了文档每章讨论的主要话题与内容详略分布</p>',
         '/static/cover/fenix.png', '/static/desc/fenix.jpg');
 
 INSERT INTO specification
@@ -158,15 +158,17 @@ VALUES (62, '装帧', '平装', 7);
 INSERT INTO specification
 VALUES (63, '作者', '周志明', 8);
 INSERT INTO specification
-VALUES (64, 'ISBN', 'OpenDocument', 8);
+VALUES (64, 'ISBN', '9787111349662', 8);
 INSERT INTO specification
-VALUES (65, '书名', '现代软件架构探索', 8);
+VALUES (65, '书名', '凤凰架构', 8);
 INSERT INTO specification
-VALUES (66, '页数', '0', 8);
+VALUES (70, '副标题', '构建可靠的大型分布式系统', 8);
 INSERT INTO specification
-VALUES (67, '出版社', 'OpenDocument', 8);
+VALUES (66, '页数', '409', 8);
 INSERT INTO specification
-VALUES (68, '出版年', '2020-2', 8);
+VALUES (67, '出版社', '机械工业出版社', 8);
+INSERT INTO specification
+VALUES (68, '出版年', '2020-6', 8);
 INSERT INTO specification
 VALUES (69, '装帧', '在线', 8);
 

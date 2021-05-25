@@ -1,4 +1,4 @@
-# Fenix's BookStore后端：以Spring Cloud微服务实现
+# Fenix's Bookstore后端：以Spring Cloud微服务实现
 
 <GitHubWrapper>
 <p align="center">

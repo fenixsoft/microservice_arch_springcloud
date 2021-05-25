@@ -5,7 +5,7 @@ INSERT INTO product VALUES (4, '深入理解Java虚拟机（第2版）', 79, 9.0
 INSERT INTO product VALUES (5, 'Java虚拟机规范（Java SE 7）', 69, 8.9, '<p>本书整合了自1999年《Java虚拟机规范（第2版）》发布以来Java世界所出现的技术变化。另外，还修正了第2版中的许多错误，以及对目前主流Java虚拟机实现来说已经过时的内容。最后还处理了一些Java虚拟机和Java语言概念的模糊之处。</p><p>2004年发布的Java SE 5.0版为Java语言带来了翻天覆地的变化，但是对Java虚拟机设计的影响则相对较小。在Java SE 7这个版本中，我们扩充了class文件格式以便支持新的Java语言特性，譬如泛型和变长参数方法等。</p>','/static/cover/jvms.jpg','/static/desc/jvms.jpg');
 INSERT INTO product VALUES (6, '深入理解OSGi', 79, 7.7, '<p>本书是原创Java技术图书领域继《深入理解Java虚拟机》后的又一实力之作，也是全球首本基于最新OSGi R5.0规范的著作。理论方面，既全面解读了OSGi规范，深刻揭示了OSGi原理，详细讲解了OSGi服务，又系统地介绍了Equinox框架的使用方法，并通过源码分析了该框架的工作机制；实践方面，不仅包含一些典型的案例，还总结了大量的最佳实践，极具实践指导意义。</p><p>全书共14章，分4个部分。第一部分（第1章）：走近OSGi，主要介绍了什么是OSGi以及为什么要使用OSGi。第二部分（第2～4章）：OSGi规范与原理，对最新的OSGi R5.0中的核心规范进行了全面的解读，首先讲解了OSGi模块的建立、描述、依赖关系的处理，然后讲解了Bundle的启动原理和调度管理，最后讲解了与本地及远程服务相关的内容。第三部分：OSGi服务与Equinox应用实践（第5～11章），不仅详细讲解了OSGi服务纲要规范和企业级规范中最常用的几个子规范和服务的技术细节，还通过一个基于Equinox的BBS案例演示了Equinox的使用方法，最重要的是还通过源码分析了Equinox关键功能的实现机制和原理。第四部分：最佳实践（第12～14章），总结了大量关于OSGi的最佳实践，包括从Bundle如何命名、模块划分、依赖关系处理到保持OSGi动态性、管理程序启动顺序、使用API基线管理模块版本等各方面的实践技巧，此外还介绍了Spring DM的原理以及如何在OSGi环节中进行程序测试。</p>','/static/cover/osgi.jpg','/static/desc/OSGi.jpg');
 INSERT INTO product VALUES (7, '深入理解Java虚拟机', 69, 8.6, '<p>作为一位Java程序员，你是否也曾经想深入理解Java虚拟机，但是却被它的复杂和深奥拒之门外？没关系，本书极尽化繁为简之妙，能带领你在轻松中领略Java虚拟机的奥秘。本书是近年来国内出版的唯一一本与Java虚拟机相关的专著，也是唯一一本同时从核心理论和实际运用这两个角度去探讨Java虚拟机的著作，不仅理论分析得透彻，而且书中包含的典型案例和最佳实践也极具现实指导意义。</p><p>全书共分为五大部分。第一部分从宏观的角度介绍了整个Java技术体系的过去、现在和未来，以及如何独立地编译一个OpenJDK7，这对理解后面的内容很有帮助。第二部分讲解了JVM的自动内存管理，包括虚拟机内存区域的划分原理以及各种内存溢出异常产生的原因；常见的垃圾收集算法以及垃圾收集器的特点和工作原理；常见的虚拟机的监控与调试工具的原理和使用方法。第三部分分析了虚拟机的执行子系统，包括Class的文件结构以及如何存储和访问Class中的数据；虚拟机的类创建机制以及类加载器的工作原理和它对虚拟机的意义；虚拟机字节码的执行引擎以及它在实行代码时涉及的内存结构。第四部分讲解了程序的编译与代码的优化，阐述了泛型、自动装箱拆箱、条件编译等语法糖的原理；讲解了虚拟机的热点探测方法、HotSpot的即时编译器、编译触发条件，以及如何从虚拟机外部观察和分析JIT编译的数据和结果。第五部分探讨了Java实现高效并发的原理，包括JVM内存模型的结构和操作；原子性、可见性和有序性在Java内存模型中的体现；先行发生原则的规则和使用；线程在Java语言中的实现原理；虚拟机实现高效并发所做的一系列锁优化措施。</p>','/static/cover/jvm1.jpg','');
-INSERT INTO product VALUES (8, '现代软件架构探索', 0, 0, '<p>这是什么？</p><p>简单地说，这是针对软件开发中不同架构、技术方案（如单体架构、微服务、服务网格、无服务架构、云原生等等）的演示程序。包含可以作为实际项目开发参考的样例代码（PetStore-Like-Project），以及作者对这些架构的使用方法、优劣理解。</p>','/static/cover/fenix.png','/static/desc/fenix.jpg');
+INSERT INTO product VALUES (8, '凤凰架构：构建可靠的大型分布式系统', 0, 0, '<p>这是一部以“如何构建一套可靠的分布式大型软件系统”为叙事主线的开源文档，是一幅帮助开发人员整理现代软件架构各条分支中繁多知识点的技能地图。文章《<a href="https://icyfenix.cn/introduction/about-the-fenix-project.html" target=_blank>什么是“凤凰架构”</a>》详细阐述了这部文档的主旨、目标与名字的来由，文章《<a href="https://icyfenix.cn/exploration/guide/quick-start.html" target=_blank>如何开始</a>》简述了文档每章讨论的主要话题与内容详略分布</p>','/static/cover/fenix.png','/static/desc/fenix.jpg');
 
 INSERT INTO specification VALUES (1, '作者','周志明',1);
 INSERT INTO specification VALUES (2, '副标题','JVM高级特性与最佳实践',1);
@@ -70,11 +70,12 @@ INSERT INTO specification VALUES (60, '出版社','机械工业出版社',7);
 INSERT INTO specification VALUES (61, '出版年','2011-6',7);
 INSERT INTO specification VALUES (62, '装帧','平装',7);
 INSERT INTO specification VALUES (63, '作者','周志明',8);
-INSERT INTO specification VALUES (64, 'ISBN','OpenDocument',8);
-INSERT INTO specification VALUES (65, '书名','现代软件架构探索',8);
-INSERT INTO specification VALUES (66, '页数','0',8);
-INSERT INTO specification VALUES (67, '出版社','OpenDocument',8);
-INSERT INTO specification VALUES (68, '出版年','2020-2',8);
+INSERT INTO specification VALUES (64, 'ISBN','9787111349662',8);
+INSERT INTO specification VALUES (65, '书名','凤凰架构',8);
+INSERT INTO specification VALUES (70, '副标题', '构建可靠的大型分布式系统',8);
+INSERT INTO specification VALUES (66, '页数','409',8);
+INSERT INTO specification VALUES (67, '出版社','机械工业出版社',8);
+INSERT INTO specification VALUES (68, '出版年','2020-6',8);
 INSERT INTO specification VALUES (69, '装帧','在线',8);
 
 INSERT INTO advertisement VALUES (1, '/static/carousel/fenix2.png',8);

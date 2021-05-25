@@ -70,7 +70,6 @@ public class AccountResource {
      */
     @POST
     @CacheEvict(key = "#user.username")
-    @PreAuthorize("#oauth2.hasAnyScope('BROWSER')")
     public Response createUser(@Valid @UniqueAccount Account user) {
         return CommonResponse.op(() -> service.createAccount(user));
     }

@@ -16,7 +16,7 @@
  *        https://github.com/fenixsoft
  */
 
-package com.github.fenixsoft.bookstore.account.applicaiton;
+package com.github.fenixsoft.bookstore.account.application;
 
 import com.github.fenixsoft.bookstore.account.domain.AccountRepository;
 import com.github.fenixsoft.bookstore.domain.account.Account;

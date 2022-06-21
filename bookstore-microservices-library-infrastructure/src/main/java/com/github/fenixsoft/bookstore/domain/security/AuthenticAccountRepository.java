@@ -22,6 +22,8 @@ import com.github.fenixsoft.bookstore.domain.account.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 /**
  * 认证用户的数据仓库
  *
@@ -34,7 +36,10 @@ public class AuthenticAccountRepository {
     private AccountServiceClient userService;
 
     public AuthenticAccount findByUsername(String username) {
-        Account account = userService.findByUsername(username);
-        return new AuthenticAccount(account);
+        return optionalByUsername(username).orElse(null);
+    }
+
+    public Optional<AuthenticAccount> optionalByUsername(String username) {
+        return Optional.ofNullable(userService.findByUsername(username)).map(AuthenticAccount::new);
     }
 }
